@@ -10,7 +10,6 @@ workDir = os.getcwd()
 receptor = "receptor.pdb"
 receptor_pdbqt = "receptor.pdbqt"
 ligand = os.path.join(workDir, "ligand_min.pdbqt")   # optimized ligand
-res_box = "selection_merge.pdb"
 
 # Docking box center and size (from P2Rank pocket)
 centerX = 32.79
@@ -78,9 +77,7 @@ os.system(f"obabel -i pdbqt {ligand_out} -o sdf -O {ligand_out_sdf} -xh")
 v = py3Dmol.view(js='https://3dmol.org/build/3Dmol.js')
 v.addModel(open(receptor).read())
 v.setStyle({'cartoon': {}, 'stick': {'colorscheme':'white','radius':.1}})
-v.addModel(open(res_box).read())
-v.setStyle({'model':1},{'stick':{'colorscheme':'dimgrayCarbon','radius':.175}})
 v.addModelsAsFrames(open(ligand_out_sdf,'rt').read())
-v.setStyle({'model':2},{'stick':{'colorscheme':'greenCarbon'}})
+v.setStyle({'model':1},{'stick':{'colorscheme':'greenCarbon'}})
 v.zoomTo({'model':1})
 v.show()

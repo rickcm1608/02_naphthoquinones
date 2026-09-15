@@ -6,21 +6,20 @@ Computational pipeline for the study of naphthoquinone derivatives (D01, D02, D0
 
 ```
 01_prepare_receptor          -> Clean PDB, fix missing atoms/H, convert to PDBQT
-02_binding_site_prediction   -> P2Rank binding pocket prediction
-03_residue_selection         -> Extract pocket residues as individual PDB files
-04_ligand_optimization       -> ANI-2x geometry optimization (Neural Network Potential)
-05_docking                   -> GPU-accelerated docking with UniDock (Vina scoring)
-06_build_topology            -> AMBER19SB + GAFF2 + TIP3P topology (OpenMM)
-07_interaction_fingerprint   -> Protein-ligand interaction fingerprint (ProLIF)
-08_equilibration             -> NVT + NPT equilibration (0.5 ns + 0.5 ns, OpenMM)
-09_production_md             -> NPT production MD -- 11 x 5 ns = 55 ns (CUDA)
-10_concatenate_trajectories  -> PBC unwrap, complex centering, Ca alignment
-11_gnina_rescoring           -> CNN-based rescoring of MD frames with GNINA
-12_rmsd_ligand               -> Ligand RMSD (protein Ca fit, reference = frame 0)
-13_rmsd_ligand_nofit         -> Ligand RMSD (no local fit, reference = frame 100)
-14_rmsd_docking_pose         -> Ligand RMSD vs initial docking pose
-15_rmsd_protein_backbone     -> Protein Ca RMSD over production trajectory
-16_hbonds                    -> Protein-ligand hydrogen bond counts per frame
+02_binding_site_prediction   -> P2Rank binding pocket prediction (pocket placed manually from this output)
+03_ligand_optimization       -> ANI-2x geometry optimization (Neural Network Potential)
+04_docking                   -> GPU-accelerated docking with UniDock (Vina scoring)
+05_build_topology            -> AMBER19SB + GAFF2 + TIP3P topology (OpenMM)
+06_interaction_fingerprint   -> Protein-ligand interaction fingerprint (ProLIF)
+07_equilibration             -> NVT + NPT equilibration (0.5 ns + 0.5 ns, OpenMM)
+08_production_md             -> NPT production MD -- 11 x 5 ns = 55 ns (CUDA)
+09_concatenate_trajectories  -> PBC unwrap, complex centering, Ca alignment
+10_gnina_rescoring           -> CNN-based rescoring of MD frames with GNINA
+11_rmsd_ligand               -> Ligand RMSD (protein Ca fit, reference = frame 0)
+12_rmsd_ligand_nofit         -> Ligand RMSD (no local fit, reference = frame 100)
+13_rmsd_docking_pose         -> Ligand RMSD vs initial docking pose
+14_rmsd_protein_backbone     -> Protein Ca RMSD over production trajectory
+15_hbonds                    -> Protein-ligand hydrogen bond counts per frame
 ```
 
 The pipeline was run independently for each of the four ligands (D01, D02, D03, RWF).
