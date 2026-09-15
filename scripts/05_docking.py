@@ -36,8 +36,8 @@ locale.getpreferredencoding = lambda do_setlocale=True: "UTF-8"
 # ============================
 # 2. BUILD AND RUN UNIDOCK COMMAND
 # ============================
-# Full path to UniDock executable
-unidock_exec = "/home/jvaldiviezo/bin/unidock"
+# Path to UniDock executable (override with UNIDOCK_BIN env var if not on PATH)
+unidock_exec = os.environ.get("UNIDOCK_BIN", "unidock")
 
 unidock_cmd = (
     f"{unidock_exec}"

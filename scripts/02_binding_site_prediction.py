@@ -7,8 +7,8 @@ import subprocess
 workDir = os.getcwd()
 receptor = os.path.join(workDir, "receptor.pdb")
 
-# Full path to P2Rank binary
-prank_bin = "/home/jvaldiviezo/bin/p2rank_2.4/prank"
+# Path to P2Rank binary (override with P2RANK_BIN env var if not on PATH)
+prank_bin = os.environ.get("P2RANK_BIN", "prank")
 
 # Output folder
 output_p2rank = os.path.join(workDir, "output_p2rank")

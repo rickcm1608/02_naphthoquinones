@@ -38,7 +38,8 @@ for i, ts in enumerate(u1.trajectory[::Skip]):
     prot.write(os.path.join(pdb_dir, "protein.pdb"))
     lig.write(os.path.join(pdb_dir, "ligand.pdb"))
 
-    cmd = f"/home/jvaldiviezo/bin/gnina -r {pdb_dir}/protein.pdb -l {pdb_dir}/ligand.pdb {minimize} -o score_gnina.sdf"
+    gnina_exec = os.environ.get("GNINA_BIN", "gnina")
+    cmd = f"{gnina_exec} -r {pdb_dir}/protein.pdb -l {pdb_dir}/ligand.pdb {minimize} -o score_gnina.sdf"
     with open("gnina_score.sh", "w") as f:
         f.write(cmd + "\n")
 
